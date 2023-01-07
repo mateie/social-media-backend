@@ -15,8 +15,8 @@ export default {
         getPosts: async () => {
             return await Post.find().sort();
         },
-        getFreshPosts: async () => {
-            return await Post.find().sort({ createdAt: -1 });
+        getFreshPosts: async (_: any, { first, offset }: { first: number; offset: number }) => {
+            return await Post.find().sort({ createdAt: -1 }).limit(first ?? 3).skip(offset);
         },
         getFollowingPosts: async (_: any, { username }: { username: string }) => {
             const follower = await User.findOne({ username }).select("-password -email").lean();
