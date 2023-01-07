@@ -70,6 +70,8 @@ export default class Server extends ApolloServer {
 
         console.log(`Server ready at port: ${process.env.PORT}`);
 
+        mongoose.set('strictQuery', true);
+
         mongoose.connect(process.env.DB as string).then(() => console.log("Connected to the database")).catch(console.error);
     }
 }
