@@ -56,7 +56,7 @@ export default class Server extends ApolloServer {
         app.use(
             "/",
             bodyParser.json(),
-            cors<cors.CorsRequest>(),
+            cors<cors.CorsRequest>({ origin: "*" }),
             expressMiddleware(this, {
                 context: async ({ req }) => ({
                     req,
@@ -70,7 +70,7 @@ export default class Server extends ApolloServer {
 
         console.log(`Server ready at port: ${process.env.PORT}`);
 
-        mongoose.set('strictQuery', true);
+        mongoose.set("strictQuery", true);
 
         mongoose.connect(process.env.DB as string).then(() => console.log("Connected to the database")).catch(console.error);
     }
