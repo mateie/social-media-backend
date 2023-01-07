@@ -171,7 +171,7 @@ input RegisterInput {
 }
 type Query {
     getPosts: [Post]
-    getFreshPosts: [Post]
+    getFreshPosts(first: Int, offset: Int): [Post]
     getSpotlightPosts: [Post]
     getUserPosts(username: String!): [Post]
     getPost(postId: String!): Post
